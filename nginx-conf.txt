@@ -1,0 +1,15 @@
+server {
+    listen       12315;
+    server_name  localhost;
+
+    location / {
+        root   E://03.test-project/my-template/VueH5Template/dist;
+        index  index.html index.htm;
+    }
+    location /prod-api/ {
+        proxy_pass http://192.168.5.29:3000/mock/17/;
+        proxy_set_header Host $host:$server_port;
+
+        proxy_redirect / /prod-api/;
+    }
+}
